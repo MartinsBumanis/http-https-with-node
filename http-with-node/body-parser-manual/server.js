@@ -1,6 +1,7 @@
 const http = require('http');
-const services = require('../services');
+const services = require('../../services');
 const url = require('url');
+
 
 
 const server = http.createServer();
@@ -15,6 +16,7 @@ server.on('request', (request, response) => { //fires once for every request tha
         //console.log(metadata);
         console.log(request.headers);
     };
+    //This is a manual method of parsing the body
     const body = []; //stores each buffer
     request.on('data', (chunk) => { //data comes in different chunks it must be pieced together
         body.push(chunk); //pushes each buffer into array
@@ -25,6 +27,8 @@ server.on('request', (request, response) => { //fires once for every request tha
         console.log(userName);
         services.createUser(userName);
     });
+   
+
 
 });
 server.listen(8080); // listens on this port
